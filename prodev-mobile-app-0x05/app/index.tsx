@@ -1,21 +1,19 @@
-import { View, Text, TouchableOpacity } from "react-native";
-import { Link } from "expo-router";
-import styles from "../styles/_tabstyle";
+import React from "react";
+import { View, Text, Button, StyleSheet } from "react-native";
+import { useRouter } from "expo-router";
 
-export default function Home() {
+export default function Index() {
+  const router = useRouter();
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>🏠 Home</Text>
-      <Link href="/join" asChild>
-        <TouchableOpacity style={styles.button}>
-          <Text style={styles.buttonText}>Join</Text>
-        </TouchableOpacity>
-      </Link>
-      <Link href="/signin" asChild>
-        <TouchableOpacity style={styles.button}>
-          <Text style={styles.buttonText}>Sign In</Text>
-        </TouchableOpacity>
-      </Link>
+      <Text style={styles.title}>Welcome to My App</Text>
+      <Button title="Join" onPress={() => router.push("/join")} />
+      <Button title="Sign In" onPress={() => router.push("/signin")} />
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: { flex: 1, justifyContent: "center", alignItems: "center" },
+  title: { fontSize: 24, fontWeight: "bold", marginBottom: 20 },
+});
